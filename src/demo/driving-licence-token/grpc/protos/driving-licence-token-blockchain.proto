@@ -5,67 +5,88 @@ import "google/api/annotations.proto";
 option csharp_namespace = "GrpcService";
 
 service DrivingLicenceTokenBlockChainService {
-  rpc GenesisBlock(EmptyRequest) returns (BlockResponse);
-  rpc LastBlock(EmptyRequest)  returns (BlockResponse);
-  rpc SendToken(SendRequest)  returns (TrxResponse);
-  rpc GetBlocks(BlockRequest) returns (BlocksResponse) {
-    option (google.api.http) = {
-      post: "/v1/getblocks"
-      body: "*"
-    };
-  };
-  rpc GetTransactions(AccountRequest) returns (TransactionsResponse) {
-    option (google.api.http) = {
-      post: "/v1/gettransactions"
-      body: "*"
-    };
-  };
+	rpc GenesisBlock(EmptyRequest) returns (BlockResponse);
+    rpc LastBlock(EmptyRequest) returns (BlockResponse);
+    rpc SendToken(SendRequest) returns (TrxResponse) {
+		option (google.api.http) = {
+			post: "/v1/sendtoken"
+			body: "*"
+		};
+	};
+    rpc GetBlocks(BlockRequest) returns (BlocksResponse) {
+		option (google.api.http) = {
+			post: "/v1/getblocks"
+			body: "*"
+		};
+	};
+	rpc GetTransactions(AccountRequest) returns (TransactionsResponse) {
+		option (google.api.http) = {
+			post: "/v1/gettransactions"
+			body: "*"
+		};
+	};
+
+	rpc CreateAccount(EmptyRequest) returns (AccountResponse) {
+		option (google.api.http) = {
+			post: "/v1/createaccount"
+			body: "*"
+		};
+	};
+	rpc GetBalance(AccountRequest) returns (BalanceResponse) {
+		option (google.api.http) = {
+			post: "/v1/getbalance"
+			body: "*"
+		};
+	};
 }
 
 message SearchRequest {
-  string query = 1;
-  int32 page_number = 2;
-  int32 result_per_page = 3; 
+	string query = 1;
+	int32 page_number = 2;
+	int32 result_per_page = 3; 
 }
 
-message SendRequest{
-   string trx_id = 1;
-   string public_key = 2;
-   TrxInput trx_input = 3;
-   TrxOutput trx_output = 4;
+message SendRequest {
+	string sender_address = 1;
+	string recipient_address = 2;
+	string data = 3;
 }
 
-message TrxInput{
+message TrxInput {
 	int64 time_stamp = 1;
 	string sender_address = 2;
 	string signature = 3;
 }
 
-message TrxOutput{
+message TrxOutput {
 	string recipient_address = 1;
 	int32 amount_licence_token = 2;
 	string data = 3;
 }
 
-message AccountRequest{
-   string address = 1;
+message AccountRequest {
+	string address = 1;
 }
 
-message BlockRequest{
-  int32 page_number = 1;
-  int32 result_per_page = 2; 
+message BlockRequest {
+	int32 page_number = 1;
+	int32 result_per_page = 2; 
 }
 
 message BlocksResponse {
-  repeated BlockModel blocks = 1;
+	repeated BlockModel blocks = 1;
 }
 
 message BlockResponse {
-  BlockModel block = 1;
+	BlockModel block = 1;
 }
 
 message TransactionsResponse {
-  repeated TrxModel transactions = 1;
+	repeated TrxModel transactions = 1;
+}
+
+message BalanceResponse {
+	int32 balance = 1;
 }
 
 message TrxModel {
@@ -95,5 +116,11 @@ message EmptyRequest {
 }
 
 message TrxResponse {
-  string result = 1;
+	string result = 1;
+}
+
+message AccountResponse {
+	string address = 1;
+	string secret_number = 2;
+	string public_key = 3;
 }

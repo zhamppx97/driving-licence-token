@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GrpcService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -84,6 +85,11 @@ namespace driving_licence_token
             SHA256 sha256 = SHA256.Create();
             byte[] sendHash = sha256.ComputeHash(sha256.ComputeHash(concatHash));
             return BytesToHex(sendHash).ToLower();
+        }
+
+        public static string GetTransactionHash(TrxInput input, TrxOutput output)
+        {
+            return GenHash(GenHash($"{input.TimeStamp}{input.SenderAddress}{output.AmountLicenceToken}{output.Data}{output.RecipientAddress}"));
         }
     }
 }

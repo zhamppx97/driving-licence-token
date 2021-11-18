@@ -1,12 +1,16 @@
-﻿using LiteDB;
+﻿using EllipticCurve;
+using LiteDB;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace driving_licence_token
 {
     public class Validators
     {
         public string Address { set; get; }
+        public byte[] PrivKey { set; get; }
+        public byte[] PubKey { set; get; }
     }
 
     public class Validator
@@ -32,21 +36,33 @@ namespace driving_licence_token
             var validator = GetAll();
             if (validator.Count() < 1)
             {
+                var pKey1 = new PrivateKey();
                 Add(new Validators
                 {
-                    Address = "ZX_JavaPsOANbgT5anGjTg0Ih6qdC4mHgbmpF5ptjAJb0g=",
+                    Address = "ZX_jVL7M99B+Gq8MzRoUtKrYsRDCJeVo/n+DN9ldpV09Oc=",
+                    PrivKey = pKey1.toString(),
+                    PubKey = pKey1.publicKey().toString(),
                 });
+                var pKey2 = new PrivateKey();
                 Add(new Validators
                 {
-                    Address = "ZX_mGyJe2kD3cNs4c8d/KHVe4+DSt9mwrLLqlDejXUgdzA=",
+                    Address = "ZX_ximh6/aA0n3WEyruyad8IG7HgnSg3S8qzJhlAtF/cqw=",
+                    PrivKey = pKey2.toString(),
+                    PubKey = pKey2.publicKey().toString(),
                 });
+                var pKey3 = new PrivateKey();
                 Add(new Validators
                 {
-                    Address = "ZX_ZOm+XeyKAEbIb/L41TPEzRRxwMOsZW6HE2WjdxeCFFI=",
+                    Address = "ZX_PuKJ3XcUYnCVW0aTR+n+WQMuLTe0jF7iMUj8n3MdIRw=",
+                    PrivKey = pKey3.toString(),
+                    PubKey = pKey3.publicKey().toString(),
                 });
+                var pKey4 = new PrivateKey();
                 Add(new Validators
                 {
-                    Address = "ZX_rMOHTqvkDCLtaoqbkgF3GmM2lewE3R2ZFYDGfq0A/fI=",
+                    Address = "ZX_mOS1iARv0zTnOtqo2IzpHKeWarI2jGZKCyUrIBw8HqQ=",
+                    PrivKey = pKey4.toString(),
+                    PubKey = pKey4.publicKey().toString(),
                 });
                 ValidatorList.AddRange(GetAll().FindAll());
             }
@@ -63,6 +79,17 @@ namespace driving_licence_token
             int choosed = random.Next(0, numOfValidators);
             var validatorAddr = ValidatorList[choosed].Address;
             return validatorAddr;
+        }
+
+        public static string GetPubKeyHex(byte[] publicKey)
+        {
+            return Convert.ToHexString(publicKey).ToLower();
+        }
+
+        public static string CreateSignature(string message, byte[] privateKeyStr)
+        {
+            Signature signature = Ecdsa.sign(message, PrivateKey.fromString(privateKeyStr));
+            return signature.toBase64();
         }
     }
 }

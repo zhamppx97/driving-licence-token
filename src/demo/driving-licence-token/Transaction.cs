@@ -78,6 +78,18 @@ namespace driving_licence_token
             AddToPool(newTrx);
         }
 
+        public static int GetBalance(string address)
+        {
+            int balance = 0;
+            var collection = GetAll();
+            var transactions = collection.Find(x => x.Sender == address || x.Recipient == address);
+            foreach (Transaction trx in transactions)
+            {
+                balance = trx.AmountLicenceToken;
+            }
+            return balance;
+        }
+
         public static bool VerifySignature(string publicKeyHex, string message, string signature)
         {
             var byt = Utils.HexToBytes(publicKeyHex);

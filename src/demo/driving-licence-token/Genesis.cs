@@ -18,17 +18,17 @@ namespace driving_licence_token
                 new GenesisAccount
                 {
                     // secret nunber
-                    // 37115820268057954843929458901983051845242353300769768346456079873593606626394
-                    Address = "ZX_QPQY9wHP0jxi/0c/YRlch2Uk5ur/T8lcOaawqyoe66o=",
-                    PublicKey = "b3295dd867da1117b56edf09049daa93cadc2d83b8b17f4f004e8eaef818ae1aae3bd96dfb25eccc6d3227659b1778191f2dfb42a6a5226d054d73d7dd6f9970",
+                    // 9037598758175796877469642835103372668090558850907464818137939150342753595290
+                    Address = "ZX_l5+DlJiQherZ+sbdAXCPZEuq8FQX8+GPuENm03Sc6lI=",
+                    PublicKey = "09924545798ea5d1918504445ab7cde99590f69b3afaa8310d618c40649248c195a02bf20d0d41103e5d1d47a8d26902d4309e6c1fdf8ccac253c4e8d84f52f6",
                     BalanceLicenceToken = 2
                 },
                 new GenesisAccount
                 {
                     // secret number
-                    // 46084958288583143460506686453126733781485555622618603681695930748076603235149
-                    Address = "ZX_rcyChuW7cQcIVoKi1LfSXKfCxZBHysTwyPm88ZsN0BM=",
-                    PublicKey = "23b3f7b8806d30d765ecef49035249ef96b5f3fab2e6ed5c196c55d1fec9d55e6c04cb21ff078f8c06ddeb2b9a5d37b4396cbb0e01db8d519a25f1816a6fd803",
+                    // 35135936049611014436353059650510881094530231327628798498591367487079272826819
+                    Address = "ZX_BIzcoHrPfH4SSLXUrWOW2jOAwI14ptlCiP/3C2ZFEOQ=",
+                    PublicKey = "f9446e96caf7b344cddad68c566c83c2c78160baf33d1bc80b1c3ba7eec3f5971ad4ebf0b54ab0ed1347a4fc8d5786ef392dbbad64fed40f1d45adbff56f9400",
                     BalanceLicenceToken = 2
                 }
             };
