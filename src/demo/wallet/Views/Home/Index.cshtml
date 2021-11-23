@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1>Example wallet</h1>
+</div>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header"><h3>Alice Wallet</h3></div>
+                <div class="card-body">
+                    <h5>Alice address: </h5><label style="font-size: small">@ViewBag.AliceAddress</label>
+                    <footer class="blockquote-footer"><b>Licence token: </b>@ViewBag.AliceLicenceToken</footer>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header"><h3>Bob Wallet</h3></div>
+                <div class="card-body">
+                    <h5>Bob address: </h5><label style="font-size: small">@ViewBag.BobAddress</label>
+                    <footer class="blockquote-footer"><b>Licence token: </b>@ViewBag.BobLicenceToken</footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
